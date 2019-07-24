@@ -1,14 +1,15 @@
 /** 入口文件 **/
-import { AxiosRequestConfig } from './type/index.ts'
+import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from './type/index.ts'
 import xhr from './xhr.ts'
 import { buildURL } from '../example/helpers/url'
-import { transformRequest } from '../example/helpers/datas'
+import { transformRequest, transformResponse } from '../example/helpers/datas'
 import { processHeaders } from '../example/helpers/headers'
 
-function axios(config: AxiosRequestConfig): void {
+function axios(config: AxiosRequestConfig): AxiosPromise {
   processConfig(config)
-  console.log(config)
-  xhr(config)
+  return xhr(config).then(res => {
+    return transformResponseData(res)
+  })
 }
 
 function processConfig(config: AxiosRequestConfig): void {
@@ -24,6 +25,11 @@ function transformUrl(config: AxiosRequestConfig): string {
 
 function transformRequestData(config: AxiosRequestConfig): any {
   return transformRequest(config.data)
+}
+
+function transformResponseData(res: AxiosResponse): AxiosResponse {
+  res.data = transformResponse(res.data)
+  return res
 }
 
 function transformHeaders(config: AxiosRequestConfig) {

@@ -9,10 +9,9 @@ const app = express()
 const compiler = webpack(WebpackConfig)
 
 const router = express.Router()
-app.use(router)
 
 app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/__build__',
+  publicPath: '/__build__/',
   stats: {
     color: true,
     chunks:false
@@ -26,7 +25,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 
-const port = process.env.PORT || 8088
+const port = process.env.PORT || 8090
 module.exports = app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}, Ctrl+C to stop`)
 })
@@ -58,3 +57,5 @@ router.post('/base/buffer', function(req, res) {
     res.json(buf.toJSON())
   })
 })
+
+app.use(router)
