@@ -10,6 +10,8 @@ const compiler = webpack(WebpackConfig)
 
 const router = express.Router()
 
+console.log(router)
+
 app.use(webpackDevMiddleware(compiler, {
   publicPath: '/__build__/',
   stats: {
@@ -77,4 +79,36 @@ router.get('/error/timeout', function(req, res) {
   }, 3000)
 })
 
+router.post('/extend/post', function(req, res) {
+  res.json(req.body)
+})
+router.get('/extend/get', function(req, res) {
+  res.json(req.body)
+})
+router.options('/extend/options', function(req, res) {
+  res.json(req.body)
+})
+router.delete('/extend/delete', function(req, res) {
+  res.json(req.body)
+})
+router.head('/extend/head', function(req, res) {
+  res.json(req.body)
+})
+router.put('/extend/put', function(req, res) {
+  // res.json(req.body)
+})
+router.patch('/extend/patch', function(req, res) {
+  res.json(req.body)
+})
+
+router.post('/extend/user', function(req, res) {
+  res.json({
+    code: 0,
+    message: 'ok',
+    result: {
+      name: 'jack',
+      age: 18
+    }
+  })
+})
 app.use(router)
