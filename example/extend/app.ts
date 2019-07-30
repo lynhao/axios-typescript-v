@@ -24,8 +24,9 @@ import axios, { AxiosError } from '../../src/index'
 // axios.delete('/extend/delete')
 
 // axios.head('/extend/head')
-
-// axios.post('/extend/post', { msg: 'post' })
+let data = {msg: 'post'}
+let headers = {'content-type': 'application-json'}
+axios.post('/extend/post', data, headers )
 
 // axios.put('/extend/put', { msg: 'put' }).catch((e: AxiosError) => {
 //   console.log(e.message)
@@ -34,20 +35,23 @@ import axios, { AxiosError } from '../../src/index'
 
 // axios.patch('/extend/patch', { msg: 'patch' })
 
-// axios({
-//   url: '/extend/post',
-//   method: 'post',
-//   data: {
-//     msg: 'hi'
-//   }
-// })
+axios({
+  url: '/extend/post',
+  method: 'post',
+  data: {
+    msg: 'hi'
+  },
+  headers: {
+    'content-type': 'application/json'
+  }
+})
 
-// axios('/extend/post', {
-//   method: 'post',
-//   data: {
-//     msg: 'hello'
-//   }
-// })
+axios('/extend/post', {
+  method: 'post',
+  data: {
+    msg: 'hello'
+  }
+})
 
 interface ResponseData<T = any> {
   code: number
