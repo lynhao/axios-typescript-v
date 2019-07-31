@@ -18,12 +18,13 @@ import { AxiosTransformer } from '../../src/type'
 // })
 
 axios({
-  transformRequest: [(function(data) {
+  transformRequest: [(function(data, headers) {
+    headers['test'] = 'test'
     return qs.stringify(data)
   }), ...(axios.defaults.transformRequest as AxiosTransformer[])],
   transformResponse: [...(axios.defaults.transformResponse as AxiosTransformer[]), function(data) {
     if (typeof data === 'object') {
-      data.b = 2
+      data.b = 20
     }
     return data
   }],
@@ -33,5 +34,28 @@ axios({
     a: 10
   }
 }).then((res) => {
+  console.log(res.data)
+})
+
+const instance = axios.create({
+  transformRequest: [(function(data, headers) {
+    // headers['test'] = 'test'
+    return qs.stringify(data)
+  }), ...(axios.defaults.transformRequest as AxiosTransformer[])],
+  transformResponse: [...(axios.defaults.transformResponse as AxiosTransformer[]), function(data) {
+    if (typeof data === 'object') {
+      data.b = 20
+    }
+    return data
+  }]
+})
+
+instance({
+  url: '/config/post',
+  method: 'post',
+  data: {
+    static: '1'
+  }
+}).then(res => {
   console.log(res.data)
 })
