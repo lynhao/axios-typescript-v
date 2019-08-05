@@ -1,4 +1,8 @@
-import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../src/type/index'
+import {
+        AxiosRequestConfig,
+        AxiosPromise,
+        AxiosResponse, 
+        credentials } from '../src/type/index'
 import { parseHeaders } from '../example/helpers/headers'
 import { createError } from '../example/helpers/error'
 
@@ -82,6 +86,9 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       })
     }
 
+    if (credentials) {
+      request.credentials = true
+    }
 
     request.send(data)
   })
