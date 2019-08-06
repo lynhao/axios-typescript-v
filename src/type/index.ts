@@ -26,7 +26,9 @@ export interface AxiosRequestConfig {
   transformRequest?: AxiosTransform | AxiosTransformer[]
   transformResponse?: AxiosTransformer | AxiosTransformer[]
   cancelToken?: CancelToken
-  credentials?: boolean
+  withCredentials?: boolean
+  xsrfCookieName?: string
+  xsrfHeaderName?: string
 }
 
 export interface AxiosResponse<T = any> {

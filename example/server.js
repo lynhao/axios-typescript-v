@@ -20,6 +20,12 @@ app.use(webpackDevMiddleware(compiler, {
   }
 }))
 
+app.use(express.static(__dirname, {
+  setHeaders (res) {
+    res.cookie('XSRF-TOKEN-D', '1234abc')
+  }
+}))
+
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname))
 
@@ -130,5 +136,9 @@ router.post('/cancel/post', function(req, res) {
   setTimeout(() => {
     res.json(req.body)
   }, 1000)
+})
+
+router.get('/xsrf/get', function(req, res) {
+  res.json(req.cookies)
 })
 app.use(router)
