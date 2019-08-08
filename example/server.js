@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const WebpackConfig = require('./webpack.config')
+const multipart = require('connect-multiparty')
+const path = require('path')
 
 const app = express()
 const compiler = webpack(WebpackConfig)
@@ -31,6 +33,15 @@ app.use(express.static(__dirname))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
+
+app.use(multipart({
+  uploadDir: path.resolve(__dirname, 'upload-file')
+}))
+
+router.post('/updown/upload', function(req, res) {
+  console.log(req.body, req.files)
+  res.end('upload success!')
+})
 
 
 const port = process.env.PORT || 8090
