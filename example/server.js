@@ -166,4 +166,9 @@ router.post('/auth/post', function(req, res) {
     res.end('UnAuthorization')
   }
 })
+
+router.get('/status/304', function(req, res) {
+  res.status(304)
+  res.end()
+})
 app.use(router)
