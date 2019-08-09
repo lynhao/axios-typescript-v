@@ -171,4 +171,9 @@ router.get('/status/304', function(req, res) {
   res.status(304)
   res.end()
 })
+
+router.get('/serializer/get', function(req, res) {
+  res.json(req.query)
+})
+
 app.use(router)

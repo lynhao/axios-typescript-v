@@ -118,7 +118,6 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     }
 
     function handleResponse(response) {
-      debugger
       if (!validateStatus || validateStatus(response.status)) {
         resolve(response)
       } else {
