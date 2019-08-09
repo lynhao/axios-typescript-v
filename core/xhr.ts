@@ -11,7 +11,7 @@ import { isFormData } from '../example/helpers/util'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { data = null, url, method = 'get', headers, responseType, timeout, cancelToken, withCredentials, xsrfCookieName, xsrfHeaderName, onUploadProgress, onDownloadProgress } = config
+    const { data = null, url, method = 'get', headers, responseType, timeout, cancelToken, withCredentials, xsrfCookieName, xsrfHeaderName, onUploadProgress, onDownloadProgress, auth } = config
     const request = new XMLHttpRequest()
 
     request.open(method.toUpperCase(), url, true)
@@ -96,7 +96,9 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         }
 
       }
-
+      if (auth) {
+        headers['Authorization'] = 'Basic ' + btoa(auth.username + ':' + auth.password) 
+      }
       Object.keys(headers).forEach(name => {
         if (data === null && name.toLowerCase() === 'content-type') {
           delete headers[name]
