@@ -1,7 +1,7 @@
 /** 入口文件 **/
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../src/type/index'
 import xhr from './xhr.ts'
-import { buildURL } from '../example/helpers/url'
+import { buildURL, isAbsoluteUrl, combineURL } from '../example/helpers/url'
 import { transformRequest, transformResponse } from '../example/helpers/datas'
 import { processHeaders, flattenHeaders } from '../example/helpers/headers'
 import transform from './transform'
@@ -28,8 +28,11 @@ function throwIfCancellationRequested(config: AxiosRequestConfig): void {
   }
 }
 function transformUrl(config: AxiosRequestConfig): string {
-  const { url, params, paramsSerializer } = config
-  return buildURL(url, params, paramsSerializer)
+  let { url, params, paramsSerializer, baseURL } = config
+  if (baseURL && !isAbsoluteUrl(url!)) {
+    url = combineURL(baseURL, url)
+  }
+  return buildURL(url!, params, paramsSerializer)
 }
 
 function transformRequestData(config: AxiosRequestConfig): any {
