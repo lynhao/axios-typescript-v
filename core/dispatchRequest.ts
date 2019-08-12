@@ -27,7 +27,7 @@ function throwIfCancellationRequested(config: AxiosRequestConfig): void {
     config.cancelToken.throwIfRequested()
   }
 }
-function transformUrl(config: AxiosRequestConfig): string {
+export function transformUrl(config: AxiosRequestConfig): string {
   let { url, params, paramsSerializer, baseURL } = config
   if (baseURL && !isAbsoluteUrl(url!)) {
     url = combineURL(baseURL, url)

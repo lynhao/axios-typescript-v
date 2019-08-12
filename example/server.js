@@ -176,4 +176,12 @@ router.get('/serializer/get', function(req, res) {
   res.json(req.query)
 })
 
+router.get('/stat-method/A', function(req, res) {
+  res.end('A')
+})
+
+router.get('/stat-method/B', function(req, res) {
+  res.end('B')
+})
+
 app.use(router)
