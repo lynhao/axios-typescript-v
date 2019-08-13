@@ -1,4 +1,5 @@
 import { isPlainObject, deepMerge } from './util'
+import { Method } from '../../src/type'
 
 function normalizeHeaderName(headers: any, normalizedName: string): void {
   if (!headers) {
@@ -29,14 +30,15 @@ export function parseHeaders(headers: string): any {
     return parsed
   }
   headers.split('\r\n').forEach(line => {
-    let [key, val] = line.split(':')
+    let [key, ...vals] = line.split(':')
     key = key.trim().toLowerCase()
     if (!key) {
       return
     }
-    if (val) {
-      val = val.trim()
-    }
+    // if (vals) {
+    //   val = val.trim()
+    // }
+    let val = vals.join(':').trim()
     parsed[key] = val
   })
   return parsed
@@ -44,7 +46,6 @@ export function parseHeaders(headers: string): any {
 
 export function flattenHeaders(headers: any, method: Method):any {
   if (!headers) {
-    console.log(headers)
     return headers
   }
 

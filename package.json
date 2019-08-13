@@ -51,16 +51,12 @@
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testEnvironment": "node",
-    "testRegex": "(/test/.*\\.(test|spec))\\.(ts|tsx|js)$",
+    "testEnvironment": "jsdom",
+    "testRegex": "/test/.*\\.(test|spec)\\.(ts)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
     ],
     "coverageThreshold": {
       "global": {
@@ -71,8 +67,9 @@
       }
     },
     "collectCoverageFrom": [
-      "src/*.{js,ts}",
-      "src/**/*.{js,ts}"
+     "src/*.{js,ts}",
+     "src/**/*.{js,ts}",
+     "example/helpers/*.{js,ts}"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/boot.ts"

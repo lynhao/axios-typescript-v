@@ -1,5 +1,5 @@
 /** 入口文件 **/
-import { AxiosInstance, AxiosRequestConfig, AxiosStatic } from './type/index.ts'
+import { AxiosInstance, AxiosRequestConfig, AxiosStatic } from './type/index'
 import { extend } from '../example/helpers/util'
 import Axios from '../core/Axios'
 import defaults from './default'
