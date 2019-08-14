@@ -4,7 +4,7 @@ function encode(val: string): string {
   return encodeURIComponent(val)
     .replace(/%40/g, '@')
     .replace(/%3A/ig, ':')
-    .replace(/%24/g, '$')
+    .replace(/%26/g, '$')
     .replace(/%2C/ig, ',')
     .replace(/%20/g, '+')
     .replace(/%5B/ig, '[')
@@ -17,7 +17,7 @@ export function buildURL (url: string, params?: any, paramsSerializer?: (params:
   }
   let seriralizedParams
 
-  if (seriralizedParams) {
+  if (paramsSerializer) {
     seriralizedParams = paramsSerializer(params)
   } else if (isURLSearchParams(params)) {
     seriralizedParams = params.toString()
