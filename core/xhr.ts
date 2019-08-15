@@ -13,8 +13,8 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const { data = null, url, method = 'get', headers, responseType, timeout, cancelToken, withCredentials, xsrfCookieName, xsrfHeaderName, onUploadProgress, onDownloadProgress, auth, validateStatus } = config
     const request = new XMLHttpRequest()
-
-    request.open(method.toUpperCase(), url, true)
+    debugger
+    request.open(method!.toUpperCase(), url!, true)
 
     configureRequest() // 用于配置 request 对象
 
@@ -117,7 +117,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       }
     }
 
-    function handleResponse(response) {
+    function handleResponse(response: AxiosResponse) {
       if (!validateStatus || validateStatus(response.status)) {
         resolve(response)
       } else {

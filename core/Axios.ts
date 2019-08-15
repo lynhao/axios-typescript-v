@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosPromsie, Method, AxiosResponse, ResolvedFn, RejectedFn } from '../src/type'
+import { AxiosRequestConfig, AxiosPromise, Method, AxiosResponse, ResolvedFn, RejectedFn } from '../src/type'
 import dispatchRequest, { transformUrl } from './dispatchRequest'
 import InterceptorManager from './InterceptorManager'
 import mergeConfig from './mergeConfig'
@@ -8,7 +8,7 @@ interface Interceptors {
   response: InterceptorManager<AxiosResponse>
 }
 interface PromiseChain {
-  resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromsie)
+  resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise)
   rejected?: RejectedFn
 }
 
@@ -23,7 +23,7 @@ export default class Axios {
       response: new InterceptorManager<AxiosResponse>()
     }
   }
-  // request(config: AxiosRequestConfig): AxiosPromsie {
+  // request(config: AxiosRequestConfig): AxiosPromise {
   //   return dispatchRequest(config)
   // }
   request(url: any, config?: any): AxiosPromise {
@@ -62,31 +62,31 @@ export default class Axios {
     return promise
   }
 
-  get(url: string, config?: AxiosRequestConfig): AxiosPromsie {
+  get(url: string, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithoutData('get', url, config)
   }
 
-  delete(url: string, config?: AxiosRequestConfig): AxiosPromsie {
+  delete(url: string, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithoutData('delete', url, config)
   }
 
-  head(url: string, config?: AxiosRequestConfig): AxiosPromsie {
+  head(url: string, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithoutData('head', url, config)
   }
 
-  options(url: string, config?: AxiosRequestConfig): AxiosPromsie {
+  options(url: string, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithoutData('options', url, config)
   }
 
-  post(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromsie {
+  post(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithData('post', url, data, config)
   }
 
-  put(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromsie {
+  put(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithData('put', url, data, config)
   }
 
-  patch(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromsie {
+  patch(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
     return this._requestMethodWithData('patch', url, data, config)
   }
 

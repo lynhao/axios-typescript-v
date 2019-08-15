@@ -1,6 +1,6 @@
 /** 入口文件 **/
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../src/type/index'
-import xhr from './xhr.ts'
+import xhr from './xhr'
 import { buildURL, isAbsoluteUrl, combineURL } from '../example/helpers/url'
 import { transformRequest, transformResponse } from '../example/helpers/datas'
 import { processHeaders, flattenHeaders } from '../example/helpers/headers'

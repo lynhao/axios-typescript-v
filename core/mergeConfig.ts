@@ -37,7 +37,7 @@ export default function mergeConfig(
 
   function mergeField(key: string): void {
     const strat = strats[key] || defaultStrat
-    config[key] = strat(config1[key], config2[key])
+    config[key] = strat(config1[key], config2![key])
     console.log(config, key)
   }
   console.log(config)
