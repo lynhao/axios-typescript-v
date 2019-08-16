@@ -10,8 +10,12 @@ export default function dispatchRequest(config: AxiosRequestConfig): AxiosPromis
   throwIfCancellationRequested(config)
   processConfig(config)
   return xhr(config).then(res => {
-    console.log('res', res)
     return transformResponseData(res)
+  }).catch(err => {
+    if (err && err.response) {
+      err.response = transformResponseData(err.response)
+    }
+    return Promise.reject(err)
   })
 }
 

@@ -13,7 +13,6 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const { data = null, url, method = 'get', headers, responseType, timeout, cancelToken, withCredentials, xsrfCookieName, xsrfHeaderName, onUploadProgress, onDownloadProgress, auth, validateStatus } = config
     const request = new XMLHttpRequest()
-    debugger
     request.open(method!.toUpperCase(), url!, true)
 
     configureRequest() // 用于配置 request 对象
@@ -64,13 +63,12 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         handleResponse(response)
       }
       request.onerror = function handleError() {
-        reject(createError('Network error!', config, null, request))
+        reject(createError('Network Error', config, null, request))
       }
 
       request.ontimeout = function handleTimeout() {
-        console.log(config)
         reject(
-          createError(`timeout of ${config.timeout} ms exceeded`, config, 'ECONNABORTED', request)
+          createError(`Timeout of ${config.timeout} ms exceeded`, config, 'ECONNABORTED', request)
         )
       }
 
