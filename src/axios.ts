@@ -1,5 +1,5 @@
 /** 入口文件 **/
-import { AxiosInstance, AxiosRequestConfig, AxiosStatic } from './type/index'
+import { AxiosRequestConfig, AxiosStatic } from './type/index'
 import { extend } from '../example/helpers/util'
 import Axios from '../core/Axios'
 import defaults from './default'
@@ -14,8 +14,8 @@ function createInstance(config: AxiosRequestConfig): AxiosStatic {
 
   return instance as AxiosStatic
 }
-
 const axios = createInstance(defaults)
+
 axios.create = function create(config) {
   return createInstance(mergeConfig(defaults, config))
 }
@@ -32,6 +32,7 @@ axios.spread = function spread(callback) {
     return callback.apply(null, arr)
   }
 }
+
 axios.Axios = Axios
 
 export default axios
