@@ -57,7 +57,6 @@ describe('headers', () => {
       lastName: 'bar'
     })
     return getAjaxRequest().then(request => {
-      console.log(request)
       testHeaderValue(request.requestHeaders, 'Content-Type', 'application/json;charset=utf-8')
     })
   })
