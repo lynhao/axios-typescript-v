@@ -17,7 +17,6 @@ export default class InterceptorManager<T> {
       resolved,
       rejected
     })
-    console.log(this.interceptors)
     return this.interceptors.length - 1
   }
 
