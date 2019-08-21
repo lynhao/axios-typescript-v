@@ -69,7 +69,8 @@
     "collectCoverageFrom": [
       "src/*.{js,ts}",
       "src/**/*.{js,ts}",
-      "example/helpers/*.{js,ts}"
+      "example/helpers/*.{js,ts}",
+      "core/*.{js,ts}"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/boot.ts"

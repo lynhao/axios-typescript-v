@@ -19,6 +19,7 @@ export default function mergeConfig(
   config1: AxiosRequestConfig,
   config2?: AxiosRequestConfig
 ): AxiosRequestConfig {
+  debugger
   if (!config2) {
     config2 = {}
   }
@@ -61,7 +62,7 @@ function deepMergeStrat(val1: any, val2: any): any {
     return val2
   } else if (isPlainObject(val1)) {
     return deepMerge(val1)
-  } else if (typeof val1 !== 'undefined') {
+  } else {
     return val1
   }
 }
