@@ -19,7 +19,6 @@ export default function mergeConfig(
   config1: AxiosRequestConfig,
   config2?: AxiosRequestConfig
 ): AxiosRequestConfig {
-  debugger
   if (!config2) {
     config2 = {}
   }

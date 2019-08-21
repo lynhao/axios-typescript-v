@@ -70,7 +70,8 @@
       "src/*.{js,ts}",
       "src/**/*.{js,ts}",
       "example/helpers/*.{js,ts}",
-      "core/*.{js,ts}"
+      "core/*.{js,ts}",
+      "cancel/*.{js,ts}"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/test/boot.ts"
