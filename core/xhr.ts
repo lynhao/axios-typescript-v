@@ -82,7 +82,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
     }
 
-    function processHeaders () {
+    function processHeaders (): void {
       if (isFormData(data)) {
         // 当通过Formdata上传文件时，浏览器会给content-type赋值为'multiplart/form-data',先删除默认的content-type
         delete headers['Content-Type']

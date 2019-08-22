@@ -15,6 +15,7 @@ const defaults: AxiosRequestConfig = {
 
   transformRequest: [
     function(data: any, headers?: any): any {
+      debugger
       processHeaders(headers, data)
       return transformRequest(data)
     }

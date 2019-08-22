@@ -22,8 +22,8 @@ export default function dispatchRequest(config: AxiosRequestConfig): AxiosPromis
 function processConfig(config: AxiosRequestConfig): void {
   config.url = transformUrl(config)
   // config.data = transformRequestData(config)
+  config.headers = transformHeaders(config) // 这一步必须在transformRequest之前
   config.data = transform(config.data, config.headers, config.transformRequest)
-  config.headers = transformHeaders(config)
   config.headers = flattenHeaders(config.headers, config.method!)
 }
 function throwIfCancellationRequested(config: AxiosRequestConfig): void {

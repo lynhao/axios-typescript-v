@@ -138,6 +138,10 @@ router.post('/config/post', function(req, res) {
   res.json(req.body)
 })
 
+router.get('/config/post', function(req, res) {
+  res.end('test transform')
+})
+
 router.get('/cancel/get', function(req, res) {
   setTimeout(() => {
     res.json('hello')

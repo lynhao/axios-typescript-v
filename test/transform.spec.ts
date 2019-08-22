@@ -70,12 +70,25 @@ describe('transform', () => {
   test('should allow mutating headers', () => {
     const token = Date.now()
 
-    axios('/foo', {
-      transformRequest: function(data, headers) {
-        headers['X-Authorization'] = token
-        return data
+    // axios({
+    //   url: '/foo',
+    //   transformRequest: function(data, headers) {
+    //     headers['X-Authorization'] = token
+    //     return data
+    //   }
+    // })
+
+    axios.post(
+      '/foo',
+      { a: 123 },
+      {
+        transformRequest: (data, headers) => {
+          console.log(data)
+          headers['X-Authorization'] = token
+          return data
+        }
       }
-    })
+    )
 
     return getAjaxRequest().then(request => {
       expect(request.requestHeaders['X-Authorization']).toBe(token)
