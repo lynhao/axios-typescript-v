@@ -95,6 +95,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
       }
       if (auth) {
+        // 将字符串通过base64编码成ascII 字符串，atob相反
         headers['Authorization'] = 'Basic ' + btoa(auth.username + ':' + auth.password) 
       }
       Object.keys(headers).forEach(name => {
