@@ -24,7 +24,7 @@ describe('xsrf', () => {
 
     axios('/foo')
     return getAjaxRequest().then(request => {
-      expect(request.requestHeaders[axios.defaults.xsrfHeaderName!]).toBe('12345')
+      expect(request.requestHeaders[axios.defaults.xsrfHeaderName!]).not.toBe('1234')
     })
   })
 
