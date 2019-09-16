@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/user/bin/env sh
 set -e
 echo "Enter release version: "
 read VERSION
